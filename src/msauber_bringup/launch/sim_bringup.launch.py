@@ -4,6 +4,7 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction, OpaqueFunction
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -167,12 +168,14 @@ def generate_launch_description():
 
     delayed_foxglove = TimerAction(
         period=spawn_delay,
-        actions=[foxglove_bridge]
+        actions=[foxglove_bridge],
+        condition=IfCondition(use_foxglove),
     )
 
     delayed_twist_bridge = TimerAction(
         period=spawn_delay,
-        actions=[twist_bridge]
+        actions=[twist_bridge],
+        condition=IfCondition(use_twist_bridge),
     )
 
     actions = [
@@ -188,11 +191,7 @@ def generate_launch_description():
         delayed_spawn_and_control,
     ]
 
-    if True:
-        from launch.conditions import IfCondition
-        foxglove_bridge.condition = IfCondition(use_foxglove)
-        twist_bridge.condition = IfCondition(use_twist_bridge)
-        actions.append(delayed_foxglove)
-        actions.append(delayed_twist_bridge)
+    actions.append(delayed_foxglove)
+    actions.append(delayed_twist_bridge)
 
     return LaunchDescription(actions)
