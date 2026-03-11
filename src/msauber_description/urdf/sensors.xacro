@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<robot name="ackermann_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:if value="$(arg enable_sensors)">
+
+  <link name="$(arg robot_name)_front_camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.03 0.03"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.03 0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
+    </inertial>
+  </link>
+
+  <joint name="$(arg robot_name)_front_camera_joint" type="fixed">
+    <parent link="$(arg robot_name)_base_link"/>
+    <child link="$(arg robot_name)_front_camera_link"/>
+    <!-- mettila dove vuoi sul tuo chassis -->
+    <origin xyz="0.25 0.0 0.2" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="$(arg robot_name)_front_camera_link">
+    <sensor name="front_camera" type="camera">
+      <always_on>true</always_on>
+      <update_rate>30</update_rate>
+      <visualize>true</visualize>
+      <topic>front_camera/image</topic>
+      <camera_info_topic>front_camera/camera_info</camera_info_topic>
+      <gz_frame_id>front_camera_link</gz_frame_id>
+      <camera>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>1280</width>
+          <height>720</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>50.0</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <link name="$(arg robot_name)_front_depth_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.04"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.08"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="2e-5" ixy="0" ixz="0" iyy="2e-5" iyz="0" izz="2e-5"/>
+    </inertial>
+  </link>
+
+  <joint name="$(arg robot_name)_front_depth_joint" type="fixed">
+    <parent link="$(arg robot_name)_base_link"/>
+    <child link="$(arg robot_name)_front_depth_link"/>
+    <origin xyz="0.24 0.0 0.16" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="$(arg robot_name)_front_depth_link">
+    <sensor name="front_depth_camera" type="depth_camera">
+      <always_on>true</always_on>
+      <update_rate>20</update_rate>
+      <visualize>true</visualize>
+      <topic>front_depth/image</topic>
+      <camera_info_topic>front_depth/camera_info</camera_info_topic>
+      <gz_frame_id>front_depth_link</gz_frame_id>
+      <camera>
+        <horizontal_fov>1.22173</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R_FLOAT32</format>
+        </image>
+        <clip>
+          <near>0.10</near>
+          <far>10.0</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+</xacro:if>
+
+</robot>

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="sauber">
+    
+    <!-- Package resources -->
+    <xacro:arg name="pkg_share" default="$(find msauber_description)" />
+    <xacro:property name="pkg_share" value="$(arg pkg_share)"/>
+    <xacro:arg name="robot_name" default="sauber" />
+    <xacro:arg name="robot_skin" default="Red" />
+    <xacro:property name="mesh_dir" value="${pkg_share}/meshes"/>
+
+    <xacro:include filename="${pkg_share}/urdf/macros.xacro" />
+    <xacro:include filename="${pkg_share}/urdf/core.xacro" />
+    <xacro:include filename="${pkg_share}/urdf/sensors.xacro" />
+    <xacro:include filename="${pkg_share}/urdf/gazebo_plugins_acker.xacro" />
+
+</robot>

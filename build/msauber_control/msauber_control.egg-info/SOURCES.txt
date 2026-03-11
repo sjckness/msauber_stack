@@ -1,0 +1,14 @@
+package.xml
+setup.cfg
+setup.py
+config/ackerman_config.yaml
+config/effort_control_config.yaml
+launch/control.launch.py
+msauber_control/__init__.py
+msauber_control.egg-info/PKG-INFO
+msauber_control.egg-info/SOURCES.txt
+msauber_control.egg-info/dependency_links.txt
+msauber_control.egg-info/requires.txt
+msauber_control.egg-info/top_level.txt
+msauber_control.egg-info/zip-safe
+resource/msauber_control
