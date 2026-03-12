@@ -1,6 +1,10 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="sauber">
 
+  <!-- Optional ROS namespace for ros2_control (keeps controller_manager and services scoped) -->
+  <xacro:arg name="ros_namespace" default="msauber" />
+  <xacro:arg name="control_config" default=""/>
+
 <!-- Gazebo references -->
 
   <ros2_control name="msauber_control" type="system">
@@ -52,6 +56,9 @@
   <xacro:if value="$(arg use_sim)">
     <gazebo>
       <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <ros>
+          <namespace>$(arg ros_namespace)</namespace>
+        </ros>
         <parameters>$(arg control_config)</parameters>
       </plugin>
     </gazebo>

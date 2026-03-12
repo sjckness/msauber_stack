@@ -4,6 +4,7 @@
 
   <xacro:arg name="enable_sensors" default="true"/>
   <xacro:arg name="control_config" default=""/>
+  <xacro:arg name="namespace" default="robot"/>
   
   <!-- Materials palette (define once, used below) -->
   <material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material>

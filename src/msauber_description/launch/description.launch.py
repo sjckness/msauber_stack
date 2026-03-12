@@ -15,7 +15,8 @@ def generate_launch_description():
     pkg_name = 'msauber_description'
     pkg_share = get_package_share_directory(pkg_name)
     control_pkg_share = get_package_share_directory('msauber_control')
-    controllers_file = os.path.join(control_pkg_share, 'config', 'ackerman_config.yaml')
+    #controllers_file = os.path.join(control_pkg_share, 'config', 'ackerman_config.yaml')
+    controllers_file = '/home/andreas/dev_ws/msauber_stack/src/msauber_control/config/ackerman_config.yaml'
 
     use_sim_time = LaunchConfiguration('use_sim_time')
     use_sim = LaunchConfiguration('use_sim')
@@ -23,6 +24,7 @@ def generate_launch_description():
     use_joint_state_publisher_gui = LaunchConfiguration('use_joint_state_publisher_gui')
     use_rviz = LaunchConfiguration('use_rviz')
     robot_name = LaunchConfiguration('robot_name')
+    ros_namespace = LaunchConfiguration('ros_namespace')
 
     declare_use_sim_time = DeclareLaunchArgument(
         'use_sim_time',
@@ -60,6 +62,12 @@ def generate_launch_description():
         description='Robot name passed to xacro'
     )
 
+    declare_ros_namespace = DeclareLaunchArgument(
+        'ros_namespace',
+        default_value='msauber',
+        description='ROS namespace used by ros2_control and description'
+    )
+
     xacro_file = PathJoinSubstitution([
         FindPackageShare(pkg_name),
         'urdf',
@@ -79,7 +87,8 @@ def generate_launch_description():
         ' enable_sensors:=', enable_sensors,
         ' robot_name:=', robot_name,
         ' pkg_share:=', pkg_share,
-        ' control_config:=', controllers_file
+        ' control_config:=', controllers_file,
+        ' ros_namespace:=', ros_namespace
     ])
 
     robot_description = {
@@ -124,6 +133,7 @@ def generate_launch_description():
         declare_use_joint_state_publisher_gui,
         declare_use_rviz,
         declare_robot_name,
+        declare_ros_namespace,
         joint_state_publisher_gui,
         robot_state_publisher,
         rviz2,

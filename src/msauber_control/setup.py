@@ -30,6 +30,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'teleop_bridge = msauber_control.teleop_bridge:main'
         ],
     },
 )
