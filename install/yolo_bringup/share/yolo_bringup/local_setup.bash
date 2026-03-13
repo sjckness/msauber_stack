@@ -1,0 +1,1 @@
+/home/andreas/dev_ws/msauber_stack/build/yolo_bringup/ament_cmake_environment_hooks/local_setup.bash

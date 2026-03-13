@@ -1,0 +1,16 @@
+package.xml
+setup.cfg
+setup.py
+config/perception.yaml
+config/yolo.yaml
+launch/perception.launch.py
+launch/yolo_bringup.launch.py
+msauber_perception/__init__.py
+msauber_perception/detection_adapter_node.py
+msauber_perception.egg-info/PKG-INFO
+msauber_perception.egg-info/SOURCES.txt
+msauber_perception.egg-info/dependency_links.txt
+msauber_perception.egg-info/requires.txt
+msauber_perception.egg-info/top_level.txt
+msauber_perception.egg-info/zip-safe
+resource/msauber_perception

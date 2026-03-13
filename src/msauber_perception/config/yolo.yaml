@@ -1,0 +1,9 @@
+/yolo/yolo_node:
+  ros__parameters:
+    model: yolov8n.pt
+    device: cpu
+    threshold: 0.3
+    enable: true
+    use_tracking: true
+    use_debug: true
+    input_image_topic: /front_camera/image

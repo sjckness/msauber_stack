@@ -5,4 +5,6 @@ Summary: TODO: Package description
 Maintainer: andreas
 Maintainer-email: andreas21steffens@gmail.com
 License: TODO: License declaration
+Requires-Dist: setuptools
 Provides-Extra: test
+Requires-Dist: pytest; extra == "test"

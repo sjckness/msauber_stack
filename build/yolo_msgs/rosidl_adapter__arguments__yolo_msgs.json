@@ -1,0 +1,18 @@
+{
+  "package_name": "yolo_msgs",
+  "non_idl_tuples": [
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/Point2D.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/Vector2.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/Pose2D.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/BoundingBox2D.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/BoundingBox3D.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/Mask.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/KeyPoint2D.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/KeyPoint2DArray.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/KeyPoint3D.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/KeyPoint3DArray.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/Detection.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:msg/DetectionArray.msg",
+    "/home/andreas/dev_ws/msauber_stack/src/yolo_ros/yolo_msgs:srv/SetClasses.srv"
+  ]
+}
