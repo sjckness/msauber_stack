@@ -4,10 +4,10 @@
 
 #include <string.h>
 
-#include "yolo_msgs/srv/detail/set_classes__type_support.h"
-#include "yolo_msgs/srv/detail/set_classes__functions.h"
-#include "rosidl_typesupport_interface/macros.h"
 #include "yolo_msgs/srv/detail/set_classes__struct.h"
+#include "yolo_msgs/srv/detail/set_classes__functions.h"
+#include "yolo_msgs/srv/detail/set_classes__type_support.h"
+#include "rosidl_typesupport_interface/macros.h"
 
 #ifdef __cplusplus
 extern "C"

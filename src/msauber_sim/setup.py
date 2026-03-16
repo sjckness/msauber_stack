@@ -1,31 +1,38 @@
-from setuptools import find_packages, setup
+import os
 from glob import glob
+from setuptools import find_packages, setup
 
 package_name = 'msauber_sim'
+
+data_files = [
+    ('share/ament_index/resource_index/packages',
+        ['resource/' + package_name]),
+    ('share/' + package_name, ['package.xml']),
+    # Launch files
+    (f'share/{package_name}/launch', glob('launch/*.py')),
+
+    # meshes (flat)
+    (f'share/{package_name}/meshes', glob('meshes/*')),
+    
+    # Config files (YAML)
+    (f'share/{package_name}/config', glob('config/*.yaml')),
+
+    # Worlds
+    (f'share/{package_name}/worlds', glob('worlds/*')),
+]
+
+# Preserve nested structure for models (e.g., cone_orange meshes/thumbnails)
+for dirpath, _, filenames in os.walk('models'):
+    if filenames:
+        files = [os.path.join(dirpath, f) for f in filenames]
+        install_dir = os.path.join('share', package_name, dirpath)
+        data_files.append((install_dir, files))
 
 setup(
     name=package_name,
     version='0.0.0',
     packages=find_packages(exclude=['test']),
-    data_files=[
-        ('share/ament_index/resource_index/packages',
-            ['resource/' + package_name]),
-        ('share/' + package_name, ['package.xml']),
-        # Launch files
-        (f'share/{package_name}/launch', glob('launch/*.py')),
-
-        # meshes
-        (f'share/{package_name}/meshes/', glob('meshes/*')),
-
-        # models
-        (f'share/{package_name}/models/', glob('models/*')),
-        
-        # Config files (YAML)
-        (f'share/{package_name}/config', glob('config/*.yaml')),
-
-        # Config files (YAML)
-        (f'share/{package_name}/worlds', glob('worlds/*')),
-    ],
+    data_files=data_files,
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='andreas',

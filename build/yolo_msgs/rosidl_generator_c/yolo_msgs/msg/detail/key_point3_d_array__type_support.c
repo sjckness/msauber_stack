@@ -4,9 +4,9 @@
 
 #include <string.h>
 
-#include "yolo_msgs/msg/detail/key_point3_d_array__struct.h"
-#include "yolo_msgs/msg/detail/key_point3_d_array__type_support.h"
 #include "yolo_msgs/msg/detail/key_point3_d_array__functions.h"
+#include "yolo_msgs/msg/detail/key_point3_d_array__type_support.h"
+#include "yolo_msgs/msg/detail/key_point3_d_array__struct.h"
 #include "rosidl_typesupport_interface/macros.h"
 
 #ifdef __cplusplus

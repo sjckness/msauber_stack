@@ -1,6 +1,6 @@
 /yolo/yolo_node:
   ros__parameters:
-    model: yolov8n.pt
+    model: cones_v1.pt
     device: cpu
     threshold: 0.3
     enable: true

@@ -5,9 +5,9 @@
 #include <string.h>
 
 #include "yolo_msgs/msg/detail/vector2__type_support.h"
-#include "rosidl_typesupport_interface/macros.h"
-#include "yolo_msgs/msg/detail/vector2__functions.h"
 #include "yolo_msgs/msg/detail/vector2__struct.h"
+#include "yolo_msgs/msg/detail/vector2__functions.h"
+#include "rosidl_typesupport_interface/macros.h"
 
 #ifdef __cplusplus
 extern "C"

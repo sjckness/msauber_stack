@@ -23,6 +23,7 @@ def generate_launch_description():
     enable_sensors = LaunchConfiguration('enable_sensors')
     use_foxglove = LaunchConfiguration('use_foxglove')
     use_twist_bridge = LaunchConfiguration('use_twist_bridge')
+    use_yolo = LaunchConfiguration('use_yolo')
     gz_start_delay = LaunchConfiguration('gz_start_delay')
     spawn_delay = LaunchConfiguration('spawn_delay')
     spawner_delay = LaunchConfiguration('spawner_delay')
@@ -49,12 +50,18 @@ def generate_launch_description():
 
     declare_use_foxglove = DeclareLaunchArgument(
         'use_foxglove',
-        default_value='false'
+        default_value='true'
     )
 
     declare_use_twist_bridge = DeclareLaunchArgument(
         'use_twist_bridge',
         default_value='true'
+    )
+
+    declare_use_yolo = DeclareLaunchArgument(
+        'use_yolo',
+        default_value='true',
+        description='Launch YOLO perception stack'
     )
 
     declare_gz_start_delay = DeclareLaunchArgument(
@@ -169,6 +176,17 @@ def generate_launch_description():
 
     spawn_entity = OpaqueFunction(function=make_spawn_entity)
 
+    perception_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory('msauber_perception'),
+                'launch',
+                'perception.launch.py'
+            )
+        ),
+        condition=IfCondition(use_yolo),
+    )
+
     gz_bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
@@ -217,6 +235,7 @@ def generate_launch_description():
             spawn_entity,
             control_launch,
             gz_bridge,
+            perception_launch,
         ]
     )
 
@@ -241,6 +260,7 @@ def generate_launch_description():
         declare_enable_sensors,
         declare_use_foxglove,
         declare_use_twist_bridge,
+        declare_use_yolo,
         declare_gz_start_delay,
         declare_spawn_delay,
         declare_spawner_delay,

@@ -4,9 +4,9 @@
 
 #include <string.h>
 
-#include "yolo_msgs/msg/detail/bounding_box3_d__functions.h"
 #include "yolo_msgs/msg/detail/bounding_box3_d__type_support.h"
 #include "yolo_msgs/msg/detail/bounding_box3_d__struct.h"
+#include "yolo_msgs/msg/detail/bounding_box3_d__functions.h"
 #include "rosidl_typesupport_interface/macros.h"
 
 #ifdef __cplusplus

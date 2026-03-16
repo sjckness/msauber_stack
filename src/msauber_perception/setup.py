@@ -28,6 +28,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'cone_detection_node = msauber_perception.cone_detection_node:main'
         ],
     },
 )

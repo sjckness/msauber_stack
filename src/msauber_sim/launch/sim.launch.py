@@ -28,38 +28,25 @@ def generate_launch_description():
         description='namespace'
     )
 
-    gz_env = [
-        AppendEnvironmentVariable(
-            name='GZ_SIM_RESOURCE_PATH',
-            value=sim_pkg_share,
-            separator=':'
-        ),
-        AppendEnvironmentVariable(
-            name='GZ_SIM_RESOURCE_PATH',
-            value=os.path.join(sim_pkg_share, 'worlds'),
-            separator=':'
-        ),
-        AppendEnvironmentVariable(
-            name='GZ_SIM_RESOURCE_PATH',
-            value=os.path.join(sim_pkg_share, 'models'),
-            separator=':'
-        ),
-        AppendEnvironmentVariable(
-            name='GZ_SIM_RESOURCE_PATH',
-            value=os.path.join(sim_pkg_share, 'meshes'),
-            separator=':'
-        ),
-        AppendEnvironmentVariable(
-            name='GZ_SIM_RESOURCE_PATH',
-            value=description_pkg_share,
-            separator=':'
-        ),
-        AppendEnvironmentVariable(
-            name='GZ_SIM_RESOURCE_PATH',
-            value=os.path.join(description_pkg_share, 'meshes'),
-            separator=':'
-        ),
+    resource_paths = [
+        sim_pkg_share,
+        os.path.join(sim_pkg_share, 'worlds'),
+        os.path.join(sim_pkg_share, 'models'),
+        os.path.join(sim_pkg_share, 'meshes'),
+        description_pkg_share,
+        os.path.join(description_pkg_share, 'meshes'),
     ]
+
+    gz_env = []
+    for env_var in ['GZ_SIM_RESOURCE_PATH', 'IGN_GAZEBO_RESOURCE_PATH']:
+        for path in resource_paths:
+            gz_env.append(
+                AppendEnvironmentVariable(
+                    name=env_var,
+                    value=path,
+                    separator=':'
+                )
+            )
 
     world_file = PathJoinSubstitution([
         FindPackageShare('msauber_sim'),

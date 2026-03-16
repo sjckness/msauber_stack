@@ -1,1 +1,9 @@
-/home/andreas/dev_ws/msauber_stack/build/msauber_perception/config/yolo.yaml
+/yolo/yolo_node:
+  ros__parameters:
+    model: cones_v1.pt
+    device: cpu
+    threshold: 0.3
+    enable: true
+    use_tracking: true
+    use_debug: true
+    input_image_topic: /front_camera/image
