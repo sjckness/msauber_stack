@@ -1,0 +1,38 @@
+[5.213s] Invoking command in '/home/andreas/dev_ws/msauber_stack/build/msauber_sim': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(my_py_venv) %m%# PYTHONPATH=/home/andreas/dev_ws/msauber_stack/build/msauber_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andreas/dev_ws/msauber_stack/install/msauber_sim/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(my_py_venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andreas/dev_ws/msauber_stack/build/msauber_sim/build --no-deps symlink_data
+[7.088s] running develop
+[8.738s] running egg_info
+[8.742s] creating msauber_sim.egg-info
+[8.941s] writing msauber_sim.egg-info/PKG-INFO
+[8.944s] writing dependency_links to msauber_sim.egg-info/dependency_links.txt
+[8.944s] writing requirements to msauber_sim.egg-info/requires.txt
+[8.944s] writing top-level names to msauber_sim.egg-info/top_level.txt
+[8.948s] writing manifest file 'msauber_sim.egg-info/SOURCES.txt'
+[9.278s] reading manifest file 'msauber_sim.egg-info/SOURCES.txt'
+[9.280s] writing manifest file 'msauber_sim.egg-info/SOURCES.txt'
+[9.381s] running build_ext
+[9.381s] Creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/lib/python3.12/site-packages/msauber-sim.egg-link (link to .)
+[9.382s] 
+[9.382s] Installed /home/andreas/dev_ws/msauber_stack/build/msauber_sim
+[9.383s] running symlink_data
+[9.383s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/ament_index
+[9.384s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/ament_index/resource_index
+[9.384s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/ament_index/resource_index/packages
+[9.384s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/resource/msauber_sim -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/ament_index/resource_index/packages
+[9.385s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/package.xml -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim
+[9.385s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/launch
+[9.385s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/launch/sim.launch.py -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/launch
+[9.386s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/meshes
+[9.386s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/config
+[9.387s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+[9.387s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/worlds/sonoma.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+[9.387s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/worlds/my_empty.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+[9.388s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/worlds/cone_empty.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+[9.388s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models
+[9.388s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange
+[9.388s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/models/cone_orange/model.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange
+[9.389s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/models/cone_orange/model.config -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange
+[9.389s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange/meshes
+[9.389s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/models/cone_orange/meshes/cone.stl -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange/meshes
+[9.390s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange/thumbnails
+[9.390s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/models/cone_orange/thumbnails/Screenshot from 2025-07-05 15-15-27.png -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange/thumbnails
+[9.460s] Invoked command in '/home/andreas/dev_ws/msauber_stack/build/msauber_sim' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(my_py_venv) %m%# PYTHONPATH=/home/andreas/dev_ws/msauber_stack/build/msauber_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andreas/dev_ws/msauber_stack/install/msauber_sim/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(my_py_venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andreas/dev_ws/msauber_stack/build/msauber_sim/build --no-deps symlink_data

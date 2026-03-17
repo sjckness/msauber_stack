@@ -34,3 +34,5 @@ controller_manager:
       reference_timeout: 1.0
       use_stamped_vel: true
       enable_odom_tf: true
+      odom_frame_id: odom
+      base_frame_id: sauber_base_link

@@ -23,7 +23,8 @@ class teleop_bridge(Node):
     def callback(self, msg):
         out = TwistStamped()
         out.header.stamp = self.get_clock().now().to_msg()
-        out.header.frame_id = "base_link"
+        # Keep frame_id aligned with robot base frame used by TF
+        out.header.frame_id = "sauber_base_link"
         out.twist = msg
         self.pub.publish(out)
 

@@ -1,0 +1,46 @@
+planner_server:
+  ros__parameters:
+    use_sim_time: true
+
+    expected_planner_frequency: 1.0
+
+    planner_plugins: [ "GridBased" ]
+
+    GridBased:
+      plugin: "nav2_smac_planner::SmacPlanner2D"
+      tolerance: 0.5
+      downsample_costmap: false
+      allow_unknown: true
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      use_sim_time: true
+
+      global_frame: map
+      robot_base_frame: sauber_base_link
+
+      update_frequency: 1.0
+      publish_frequency: 1.0
+
+      resolution: 0.5
+
+      track_unknown_space: true
+
+      plugins: [ "static_layer", "inflation_layer" ]
+
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        inflation_radius: 0.5
+        cost_scaling_factor: 3.0
+controller_server:
+  ros__parameters:
+    use_sim_time: true
+    controller_plugins: []
+bt_navigator:
+  ros__parameters:
+    use_sim_time: true
+
+    default_bt_xml_filename: ""

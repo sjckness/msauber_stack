@@ -45,12 +45,12 @@ def generate_launch_description():
 
     declare_enable_sensors = DeclareLaunchArgument(
         'enable_sensors',
-        default_value='true'
+        default_value='false'
     )
 
     declare_use_foxglove = DeclareLaunchArgument(
         'use_foxglove',
-        default_value='true'
+        default_value='false'
     )
 
     declare_use_twist_bridge = DeclareLaunchArgument(
@@ -60,7 +60,7 @@ def generate_launch_description():
 
     declare_use_yolo = DeclareLaunchArgument(
         'use_yolo',
-        default_value='true',
+        default_value='false',
         description='Launch YOLO perception stack'
     )
 
@@ -128,6 +128,7 @@ def generate_launch_description():
     spawn_poses = {
         'my_empty': {'x': '0.0', 'y': '0.0', 'z': '0.3', 'yaw': '0.0'},
         'sonoma': {'x': '280.0', 'y': '-135.0', 'z': '10', 'yaw': '-0.78'},
+        'cone_empty': {'x': '0', 'y': '0.0', 'z': '10', 'yaw': '0.0'},
     }
 
     xacro_file = PathJoinSubstitution([

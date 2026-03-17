@@ -1,0 +1,29 @@
+running develop
+running egg_info
+creating msauber_navigation.egg-info
+writing msauber_navigation.egg-info/PKG-INFO
+writing dependency_links to msauber_navigation.egg-info/dependency_links.txt
+writing entry points to msauber_navigation.egg-info/entry_points.txt
+writing requirements to msauber_navigation.egg-info/requires.txt
+writing top-level names to msauber_navigation.egg-info/top_level.txt
+writing manifest file 'msauber_navigation.egg-info/SOURCES.txt'
+reading manifest file 'msauber_navigation.egg-info/SOURCES.txt'
+writing manifest file 'msauber_navigation.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/lib/python3.12/site-packages/msauber-navigation.egg-link (link to .)
+Installing odom_tf_bridge script to /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/lib/msauber_navigation
+
+Installed /home/andreas/dev_ws/msauber_stack/build/msauber_navigation
+running symlink_data
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/ament_index
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/ament_index/resource_index
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/ament_index/resource_index/packages
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/resource/msauber_navigation -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/ament_index/resource_index/packages
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/package.xml -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/launch
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/launch/nav.launch.py -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/launch
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/config
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/config/nav2_param.yaml -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/config
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/maps/my_map.yaml -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/maps/my_map.pgm -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
