@@ -16,6 +16,7 @@ def generate_launch_description():
     control_pkg_share = get_package_share_directory('msauber_control')
     sim_pkg_share = get_package_share_directory('msauber_sim')
     bringup_pkg_share = get_package_share_directory('msauber_bringup')
+    navigation_pkg_share = get_package_share_directory('msauber_navigation')
 
     world = LaunchConfiguration('world')
     ros_namespace = LaunchConfiguration('ros_namespace')
@@ -27,6 +28,9 @@ def generate_launch_description():
     gz_start_delay = LaunchConfiguration('gz_start_delay')
     spawn_delay = LaunchConfiguration('spawn_delay')
     spawner_delay = LaunchConfiguration('spawner_delay')
+    nav_start_delay = LaunchConfiguration('nav_start_delay')
+    params_file = LaunchConfiguration('params_file')
+    nav_map = LaunchConfiguration('nav_map')
 
     declare_world = DeclareLaunchArgument(
         'world',
@@ -78,6 +82,23 @@ def generate_launch_description():
         'spawner_delay',
         default_value='6.0',
         description='Delay before spawning controllers (forwarded to msauber_control)'
+    )
+
+    declare_nav_start_delay = DeclareLaunchArgument(
+        'nav_start_delay',
+        default_value='30.0',
+        description='Delay (s) before launching navigation after the rest of the stack is up'
+    )
+
+    declare_params_file = DeclareLaunchArgument(
+        'params_file',
+        default_value=os.path.join(navigation_pkg_share, 'config', 'nav2_param_dubin.yaml'),
+        description='Params file for nav'
+    )
+    declare_nav_map = DeclareLaunchArgument(
+        'nav_map',
+        default_value=os.path.join(navigation_pkg_share, 'maps', 'test_map.yaml'),
+        description='Map file used by Nav2 when launched via bringup'
     )
 
     sim_launch = IncludeLaunchDescription(
@@ -255,6 +276,22 @@ def generate_launch_description():
         condition=IfCondition(use_twist_bridge),
     )
 
+    navigation_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(navigation_pkg_share, 'launch', 'nav.launch.py')
+        ),
+        launch_arguments={
+            'use_sim_time': use_sim_time,
+            'params_file' : params_file,
+            'map': nav_map,
+        }.items()
+    )
+
+    delayed_navigation = TimerAction(
+        period=nav_start_delay,
+        actions=[navigation_launch],
+    )
+
     actions = [
         # Ensure we rely only on the launch-provided namespace to avoid double prefixes
         SetEnvironmentVariable('ROS_NAMESPACE', ''),
@@ -268,12 +305,16 @@ def generate_launch_description():
         declare_gz_start_delay,
         declare_spawn_delay,
         declare_spawner_delay,
+        declare_nav_start_delay,
+        declare_params_file,
+        declare_nav_map,
         sim_launch,
         delayed_robot_stack,
         delayed_spawn_and_control,
+        delayed_foxglove,
+        delayed_twist_bridge,
+        #delayed_navigation, #non legge lo yaml se lo lancio da qua aaaaaaa
+
     ]
-
-    actions.append(delayed_foxglove)
-    actions.append(delayed_twist_bridge)
-
+    
     return LaunchDescription(actions)

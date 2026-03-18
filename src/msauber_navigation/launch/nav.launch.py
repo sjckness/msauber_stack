@@ -8,7 +8,8 @@ import os
 def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time')
-    params_file = LaunchConfiguration('params_file')
+    #params_file = LaunchConfiguration('params_file')
+    params_file = '/home/andreas/dev_ws/msauber_stack/src/msauber_navigation/config/nav2_param_dubin.yaml'
     map_file = LaunchConfiguration('map')
     
     
@@ -23,7 +24,7 @@ def generate_launch_description():
         default_value=os.path.join(
             get_package_share_directory('msauber_navigation'),
             'config',
-            'nav2_param.yaml'
+            'nav2_param_dubin.yaml'
         )
     )
 
@@ -124,6 +125,19 @@ def generate_launch_description():
         ]
     )
 
+    mpc_node = Node(
+        package='msauber_navigation',
+        executable='mpc_node',
+        name='mpc_node',
+        output='screen',
+        parameters=[{
+            'use_sim_time': use_sim_time,
+            'odom_topic': '/msauber/ackermann_steering_controller/odom',
+            'path_topic': '/path',
+            'cmd_vel_topic': '/msauber/ackermann_steering_controller/reference',
+        }],
+    )
+
     return LaunchDescription([    
         declare_use_sim_time,
         declare_param_file,
@@ -134,4 +148,5 @@ def generate_launch_description():
         #costmap_2d_node,
         planner_server_node,
         lifeclycle_manager_node,
+        #mpc_node,
     ])

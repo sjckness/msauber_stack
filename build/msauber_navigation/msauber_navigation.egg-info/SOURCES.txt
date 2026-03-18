@@ -2,12 +2,15 @@ package.xml
 setup.cfg
 setup.py
 config/nav2_param.yaml
+config/nav2_param_dubin.yaml
 launch/nav.launch.py
 maps/my_map.pgm
 maps/my_map.yaml
 maps/test_map.pgm
 maps/test_map.png
 maps/test_map.yaml
+msauber_navigation/MPC.py
+msauber_navigation/MPC_node.py
 msauber_navigation/__init__.py
 msauber_navigation/odom_tf_bridge.py
 msauber_navigation.egg-info/PKG-INFO
