@@ -122,6 +122,8 @@ def generate_launch_description():
             'start_controller_manager': 'false',
             'controller_manager_name': controller_manager_name,
             'spawner_delay': spawner_delay,
+            # Keep controller namespace aligned with ros_namespace so topic/tf paths match odom_tf_bridge expectations
+            'namespace': ros_namespace,
         }.items()
     )
 
@@ -129,6 +131,7 @@ def generate_launch_description():
         'my_empty': {'x': '0.0', 'y': '0.0', 'z': '0.3', 'yaw': '0.0'},
         'sonoma': {'x': '280.0', 'y': '-135.0', 'z': '10', 'yaw': '-0.78'},
         'cone_empty': {'x': '0', 'y': '0.0', 'z': '10', 'yaw': '0.0'},
+        'pista': {'x': '0.0', 'y': '0.0', 'z': '0.3', 'yaw': '0.0'},
     }
 
     xacro_file = PathJoinSubstitution([

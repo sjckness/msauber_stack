@@ -1,0 +1,34 @@
+[5.672s] Invoking command in '/home/andreas/dev_ws/msauber_stack/build/msauber_navigation': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(my_py_venv) %m%# PYTHONPATH=/home/andreas/dev_ws/msauber_stack/build/msauber_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andreas/dev_ws/msauber_stack/install/msauber_navigation/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(my_py_venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/build --no-deps symlink_data
+[8.054s] running develop
+[9.784s] running egg_info
+[9.788s] creating msauber_navigation.egg-info
+[9.979s] writing msauber_navigation.egg-info/PKG-INFO
+[9.981s] writing dependency_links to msauber_navigation.egg-info/dependency_links.txt
+[9.984s] writing entry points to msauber_navigation.egg-info/entry_points.txt
+[9.984s] writing requirements to msauber_navigation.egg-info/requires.txt
+[9.985s] writing top-level names to msauber_navigation.egg-info/top_level.txt
+[9.985s] writing manifest file 'msauber_navigation.egg-info/SOURCES.txt'
+[10.336s] reading manifest file 'msauber_navigation.egg-info/SOURCES.txt'
+[10.339s] writing manifest file 'msauber_navigation.egg-info/SOURCES.txt'
+[10.457s] running build_ext
+[10.458s] Creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/lib/python3.12/site-packages/msauber-navigation.egg-link (link to .)
+[10.459s] Installing odom_tf_bridge script to /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/lib/msauber_navigation
+[10.460s] 
+[10.460s] Installed /home/andreas/dev_ws/msauber_stack/build/msauber_navigation
+[10.461s] running symlink_data
+[10.461s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/ament_index
+[10.462s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/ament_index/resource_index
+[10.462s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/ament_index/resource_index/packages
+[10.462s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/resource/msauber_navigation -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/ament_index/resource_index/packages
+[10.463s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/package.xml -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation
+[10.463s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/launch
+[10.464s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/launch/nav.launch.py -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/launch
+[10.464s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/config
+[10.464s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/config/nav2_param.yaml -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/config
+[10.464s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
+[10.465s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/maps/test_map.png -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
+[10.466s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/maps/test_map.pgm -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
+[10.466s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/maps/my_map.yaml -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
+[10.466s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/maps/my_map.pgm -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
+[10.467s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/maps/test_map.yaml -> /home/andreas/dev_ws/msauber_stack/install/msauber_navigation/share/msauber_navigation/maps
+[10.547s] Invoked command in '/home/andreas/dev_ws/msauber_stack/build/msauber_navigation' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(my_py_venv) %m%# PYTHONPATH=/home/andreas/dev_ws/msauber_stack/build/msauber_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andreas/dev_ws/msauber_stack/install/msauber_navigation/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(my_py_venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andreas/dev_ws/msauber_stack/build/msauber_navigation/build --no-deps symlink_data

@@ -1,0 +1,38 @@
+running develop
+running egg_info
+creating msauber_sim.egg-info
+writing msauber_sim.egg-info/PKG-INFO
+writing dependency_links to msauber_sim.egg-info/dependency_links.txt
+writing requirements to msauber_sim.egg-info/requires.txt
+writing top-level names to msauber_sim.egg-info/top_level.txt
+writing manifest file 'msauber_sim.egg-info/SOURCES.txt'
+reading manifest file 'msauber_sim.egg-info/SOURCES.txt'
+writing manifest file 'msauber_sim.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/lib/python3.12/site-packages/msauber-sim.egg-link (link to .)
+
+Installed /home/andreas/dev_ws/msauber_stack/build/msauber_sim
+running symlink_data
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/ament_index
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/ament_index/resource_index
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/ament_index/resource_index/packages
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/resource/msauber_sim -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/ament_index/resource_index/packages
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/package.xml -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/launch
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/launch/sim.launch.py -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/launch
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/meshes
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/config
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/worlds/pista_map.png -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/worlds/sonoma.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/worlds/my_empty.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/worlds/pista.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/worlds/cone_empty.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/worlds
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/models/cone_orange/model.sdf -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/models/cone_orange/model.config -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange/meshes
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/models/cone_orange/meshes/cone.stl -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange/meshes
+creating /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange/thumbnails
+symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_sim/models/cone_orange/thumbnails/Screenshot from 2025-07-05 15-15-27.png -> /home/andreas/dev_ws/msauber_stack/install/msauber_sim/share/msauber_sim/models/cone_orange/thumbnails

@@ -1,0 +1,24 @@
+[2.200s] Invoking command in '/home/andreas/dev_ws/msauber_stack/build/msauber_bringup': AMENT_PREFIX_PATH=/home/andreas/dev_ws/msauber_stack/install/msauber_sim:/home/andreas/dev_ws/msauber_stack/install/msauber_description:/home/andreas/dev_ws/msauber_stack/install/msauber_control:${AMENT_PREFIX_PATH} DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(my_py_venv) %m%# PYTHONPATH=/home/andreas/dev_ws/msauber_stack/build/msauber_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andreas/dev_ws/msauber_stack/install/msauber_bringup/lib/python3.12/site-packages:/home/andreas/dev_ws/msauber_stack/build/msauber_sim:/home/andreas/dev_ws/msauber_stack/install/msauber_sim/lib/python3.12/site-packages:/home/andreas/dev_ws/msauber_stack/build/msauber_description:/home/andreas/dev_ws/msauber_stack/install/msauber_description/lib/python3.12/site-packages:/home/andreas/dev_ws/msauber_stack/build/msauber_control:/home/andreas/dev_ws/msauber_stack/install/msauber_control/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(my_py_venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andreas/dev_ws/msauber_stack/build/msauber_bringup/build --no-deps symlink_data
+[3.116s] running develop
+[3.901s] running egg_info
+[3.901s] creating msauber_bringup.egg-info
+[3.981s] writing msauber_bringup.egg-info/PKG-INFO
+[3.982s] writing dependency_links to msauber_bringup.egg-info/dependency_links.txt
+[3.982s] writing requirements to msauber_bringup.egg-info/requires.txt
+[3.983s] writing top-level names to msauber_bringup.egg-info/top_level.txt
+[3.984s] writing manifest file 'msauber_bringup.egg-info/SOURCES.txt'
+[4.135s] reading manifest file 'msauber_bringup.egg-info/SOURCES.txt'
+[4.137s] writing manifest file 'msauber_bringup.egg-info/SOURCES.txt'
+[4.216s] running build_ext
+[4.216s] Creating /home/andreas/dev_ws/msauber_stack/install/msauber_bringup/lib/python3.12/site-packages/msauber-bringup.egg-link (link to .)
+[4.217s] 
+[4.218s] Installed /home/andreas/dev_ws/msauber_stack/build/msauber_bringup
+[4.218s] running symlink_data
+[4.218s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_bringup/share/ament_index
+[4.218s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_bringup/share/ament_index/resource_index
+[4.218s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_bringup/share/ament_index/resource_index/packages
+[4.218s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_bringup/resource/msauber_bringup -> /home/andreas/dev_ws/msauber_stack/install/msauber_bringup/share/ament_index/resource_index/packages
+[4.219s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_bringup/package.xml -> /home/andreas/dev_ws/msauber_stack/install/msauber_bringup/share/msauber_bringup
+[4.219s] creating /home/andreas/dev_ws/msauber_stack/install/msauber_bringup/share/msauber_bringup/launch
+[4.219s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/msauber_bringup/launch/sim_bringup.launch.py -> /home/andreas/dev_ws/msauber_stack/install/msauber_bringup/share/msauber_bringup/launch
+[4.298s] Invoked command in '/home/andreas/dev_ws/msauber_stack/build/msauber_bringup' returned '0': AMENT_PREFIX_PATH=/home/andreas/dev_ws/msauber_stack/install/msauber_sim:/home/andreas/dev_ws/msauber_stack/install/msauber_description:/home/andreas/dev_ws/msauber_stack/install/msauber_control:${AMENT_PREFIX_PATH} DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(my_py_venv) %m%# PYTHONPATH=/home/andreas/dev_ws/msauber_stack/build/msauber_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andreas/dev_ws/msauber_stack/install/msauber_bringup/lib/python3.12/site-packages:/home/andreas/dev_ws/msauber_stack/build/msauber_sim:/home/andreas/dev_ws/msauber_stack/install/msauber_sim/lib/python3.12/site-packages:/home/andreas/dev_ws/msauber_stack/build/msauber_description:/home/andreas/dev_ws/msauber_stack/install/msauber_description/lib/python3.12/site-packages:/home/andreas/dev_ws/msauber_stack/build/msauber_control:/home/andreas/dev_ws/msauber_stack/install/msauber_control/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(my_py_venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andreas/dev_ws/msauber_stack/build/msauber_bringup/build --no-deps symlink_data

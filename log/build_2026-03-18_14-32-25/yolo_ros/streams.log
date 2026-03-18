@@ -1,0 +1,27 @@
+[1.397s] Invoking command in '/home/andreas/dev_ws/msauber_stack/build/yolo_ros': AMENT_PREFIX_PATH=/home/andreas/dev_ws/msauber_stack/install/yolo_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/andreas/dev_ws/msauber_stack/install/yolo_msgs:${CMAKE_PREFIX_PATH} DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(my_py_venv) %m%# PYTHONPATH=/home/andreas/dev_ws/msauber_stack/build/yolo_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andreas/dev_ws/msauber_stack/install/yolo_ros/lib/python3.12/site-packages:/home/andreas/dev_ws/msauber_stack/install/yolo_msgs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(my_py_venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andreas/dev_ws/msauber_stack/build/yolo_ros/build --no-deps symlink_data
+[2.018s] running develop
+[2.688s] running egg_info
+[2.688s] creating yolo_ros.egg-info
+[2.768s] writing yolo_ros.egg-info/PKG-INFO
+[2.769s] writing dependency_links to yolo_ros.egg-info/dependency_links.txt
+[2.769s] writing entry points to yolo_ros.egg-info/entry_points.txt
+[2.770s] writing requirements to yolo_ros.egg-info/requires.txt
+[2.770s] writing top-level names to yolo_ros.egg-info/top_level.txt
+[2.771s] writing manifest file 'yolo_ros.egg-info/SOURCES.txt'
+[2.896s] reading manifest file 'yolo_ros.egg-info/SOURCES.txt'
+[2.897s] writing manifest file 'yolo_ros.egg-info/SOURCES.txt'
+[2.958s] running build_ext
+[2.958s] Creating /home/andreas/dev_ws/msauber_stack/install/yolo_ros/lib/python3.12/site-packages/yolo-ros.egg-link (link to .)
+[2.958s] Installing debug_node script to /home/andreas/dev_ws/msauber_stack/install/yolo_ros/lib/yolo_ros
+[2.958s] Installing detect_3d_node script to /home/andreas/dev_ws/msauber_stack/install/yolo_ros/lib/yolo_ros
+[2.959s] Installing tracking_node script to /home/andreas/dev_ws/msauber_stack/install/yolo_ros/lib/yolo_ros
+[2.959s] Installing yolo_node script to /home/andreas/dev_ws/msauber_stack/install/yolo_ros/lib/yolo_ros
+[2.959s] 
+[2.959s] Installed /home/andreas/dev_ws/msauber_stack/build/yolo_ros
+[2.959s] running symlink_data
+[2.959s] creating /home/andreas/dev_ws/msauber_stack/install/yolo_ros/share/ament_index
+[2.960s] creating /home/andreas/dev_ws/msauber_stack/install/yolo_ros/share/ament_index/resource_index
+[2.960s] creating /home/andreas/dev_ws/msauber_stack/install/yolo_ros/share/ament_index/resource_index/packages
+[2.960s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/yolo_ros/resource/yolo_ros -> /home/andreas/dev_ws/msauber_stack/install/yolo_ros/share/ament_index/resource_index/packages
+[2.960s] symbolically linking /home/andreas/dev_ws/msauber_stack/build/yolo_ros/package.xml -> /home/andreas/dev_ws/msauber_stack/install/yolo_ros/share/yolo_ros
+[3.006s] Invoked command in '/home/andreas/dev_ws/msauber_stack/build/yolo_ros' returned '0': AMENT_PREFIX_PATH=/home/andreas/dev_ws/msauber_stack/install/yolo_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/andreas/dev_ws/msauber_stack/install/yolo_msgs:${CMAKE_PREFIX_PATH} DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(my_py_venv) %m%# PYTHONPATH=/home/andreas/dev_ws/msauber_stack/build/yolo_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andreas/dev_ws/msauber_stack/install/yolo_ros/lib/python3.12/site-packages:/home/andreas/dev_ws/msauber_stack/install/yolo_msgs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(my_py_venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andreas/dev_ws/msauber_stack/build/yolo_ros/build --no-deps symlink_data

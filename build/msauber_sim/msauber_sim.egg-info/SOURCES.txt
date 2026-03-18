@@ -6,6 +6,9 @@ models/cone_orange/model.config
 models/cone_orange/model.sdf
 models/cone_orange/meshes/cone.stl
 models/cone_orange/thumbnails/Screenshot from 2025-07-05 15-15-27.png
+models/pista_ground/model.config
+models/pista_ground/model.sdf
+models/pista_ground/materials/textures/pista_map.png
 msauber_sim/__init__.py
 msauber_sim.egg-info/PKG-INFO
 msauber_sim.egg-info/SOURCES.txt
@@ -16,4 +19,6 @@ msauber_sim.egg-info/zip-safe
 resource/msauber_sim
 worlds/cone_empty.sdf
 worlds/my_empty.sdf
+worlds/pista.sdf
+worlds/pista_map.png
 worlds/sonoma.sdf

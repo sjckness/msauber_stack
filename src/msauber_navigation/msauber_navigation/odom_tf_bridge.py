@@ -9,14 +9,22 @@ class TFBridge(Node):
     def __init__(self):
         super().__init__('tf_bridge')
 
+        # Topic that carries the robot TF (default: controller odom TF)
+        tf_topic = self.declare_parameter(
+            'input_tf_topic',
+            '/msauber/ackermann_steering_controller/tf_odometry'
+        ).value
+
         self.br = tf2_ros.TransformBroadcaster(self)
 
         self.sub = self.create_subscription(
             TFMessage,
-            '/msauber/ackermann_steering_controller/tf_odometry',
+            tf_topic,
             self.callback,
             10
         )
+
+        self.get_logger().info(f"Republishing TF from '{tf_topic}' to '/tf'")
 
     def callback(self, msg):
         for transform in msg.transforms:
