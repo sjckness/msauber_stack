@@ -9,12 +9,17 @@
 
   <buildtool_depend>ament_python</buildtool_depend>
 
+  <depend>ament_index_python</depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
 
   <exec_depend>msauber_description</exec_depend>
   <exec_depend>msauber_control</exec_depend>
   <exec_depend>msauber_sim</exec_depend>
+  <exec_depend>msauber_perception</exec_depend>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>foxglove_bridge</exec_depend>
 
   <export>
     <build_type>ament_python</build_type>

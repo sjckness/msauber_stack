@@ -1,1 +1,0 @@
-/home/andreas/dev_ws/msauber_stack/build/msauber_bringup/launch/sim_bringup.launch.py

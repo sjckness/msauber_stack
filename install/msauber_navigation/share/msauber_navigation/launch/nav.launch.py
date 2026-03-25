@@ -1,1 +1,0 @@
-/home/andreas/dev_ws/msauber_stack/build/msauber_navigation/launch/nav.launch.py

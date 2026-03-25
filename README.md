@@ -8,7 +8,7 @@
 # Table of content
 [Package-overview](#package-overview)
 
-[Installation](#install)
+[Installation](#installation)
 
 [Build](#build)
 
@@ -112,23 +112,29 @@ git clone https://github.com/sjckness/msauber_stack
 
 Msauber_stack includes different packages, and from now on Msauber_stack will be the workspace, so the folders `build/` `log/` and `install/` will be created here.
 
-You should define your path in `env_msauber.sh` in orther to properly set the enviromenta variables.
+Inside /msauber_stack run the full project installation:
 
-You also need a `python virtual enviroment`, and the path should also be changed in env_msauber.sh
+ ```bash
+./scripts/install.sh
+```
+This installs all dependencies (ROS2, Python, etc.) and builds the workspace.
 
-![Descrizione immagine](assets/env_msauber.png)
+## Environment
 
-You should change:
-- `$VENV_DIR`
-- `$WS_DIR`
-- `setup.zsh` or `setup.bash` (depends on your shell, the default is bash)
+Inside /msauber_stack activate the working environment:
 
+ ```bash
+source scripts/env.sh
+```
+This loads ROS2, the workspace, and the Python environment.
 
-NOT ALREADY LISTED ALL THE PYTHON DEPENDENCIES OF THE PROJECT, SO IF SOMTHING IS MISSIMG INSTALL IT IN THE VIRTUAL ENVIROMENT
----
-Before building is strongly suggested to run the `env_msauber.sh` bash in orther to set the enviroment. Use:
+⚠️ Use `source`, not `./env.sh`.
+
+## Typical usage
+
 ```bash
-source env_msauber.sh
+./scripts/install.sh
+source scripts/env.sh
 ```
 
 # Build

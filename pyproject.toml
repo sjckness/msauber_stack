@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "msauber_stack"
+version = "0.1.0"
+description = "ROS2 project"
+authors = ["andreas"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "<2"
+opencv-python = ">=4.8.1.78"
+typing-extensions = ">=4.4.0"
+ultralytics = "8.4.6"
+lap = ">=0.5.12"
+empy = "^3.3.4"
+catkin-pkg = "^1.0.0"
+lark = "^1.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
