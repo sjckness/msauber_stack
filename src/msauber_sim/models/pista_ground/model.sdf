@@ -15,7 +15,7 @@
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>15 30</size>
+            <size>15 30 </size>
           </plane>
         </geometry>
         <material>

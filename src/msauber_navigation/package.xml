@@ -7,6 +7,7 @@
   <maintainer email="andreas21steffens@gmail.com">andreas</maintainer>
   <license>TODO: License declaration</license>
 
+<<<<<<< HEAD
   <buildtool_depend>ament_python</buildtool_depend>
 
   <depend>ament_index_python</depend>
@@ -18,6 +19,11 @@
   <depend>nav2_map_server</depend>
   <depend>nav2_planner</depend>
   <depend>nav2_lifecycle_manager</depend>
+=======
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+>>>>>>> 4d2226a31594a1695a6fad33d9ed6a4f52eb32da
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
