@@ -24,8 +24,8 @@ yolo_msgs__msg__BoundingBox2D__get_type_hash(
 
 // Include directives for referenced types
 #include "yolo_msgs/msg/detail/point2_d__functions.h"
-#include "yolo_msgs/msg/detail/vector2__functions.h"
 #include "yolo_msgs/msg/detail/pose2_d__functions.h"
+#include "yolo_msgs/msg/detail/vector2__functions.h"
 
 // Hashes for external referenced types
 #ifndef NDEBUG

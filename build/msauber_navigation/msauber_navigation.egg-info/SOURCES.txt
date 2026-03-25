@@ -1,8 +1,10 @@
 package.xml
 setup.cfg
 setup.py
-config/nav2_param.yaml
-config/nav2_param_dubin.yaml
+config/full_nav2_params.yaml
+config/nav2_dubin_params.yaml
+config/nav2_params.yaml
+launch/full_nav.launch.py
 launch/nav.launch.py
 maps/my_map.pgm
 maps/my_map.yaml

@@ -31,10 +31,11 @@ def generate_launch_description():
     nav_start_delay = LaunchConfiguration('nav_start_delay')
     params_file = LaunchConfiguration('params_file')
     nav_map = LaunchConfiguration('nav_map')
+    use_nav2 = LaunchConfiguration('use_nav2')
 
     declare_world = DeclareLaunchArgument(
         'world',
-        default_value='sonoma'
+        default_value='pista'
     )
 
     declare_ros_namespace = DeclareLaunchArgument(
@@ -44,6 +45,11 @@ def generate_launch_description():
 
     declare_use_sim_time = DeclareLaunchArgument(
         'use_sim_time',
+        default_value='true'
+    )
+
+    declare_use_nav2 = DeclareLaunchArgument(
+        'use_nav2',
         default_value='true'
     )
 
@@ -293,11 +299,11 @@ def generate_launch_description():
     )
 
     actions = [
-        # Ensure we rely only on the launch-provided namespace to avoid double prefixes
         SetEnvironmentVariable('ROS_NAMESPACE', ''),
         declare_world,
         declare_ros_namespace,
         declare_use_sim_time,
+        declare_use_nav2,
         declare_enable_sensors,
         declare_use_foxglove,
         declare_use_twist_bridge,
@@ -313,7 +319,7 @@ def generate_launch_description():
         delayed_spawn_and_control,
         delayed_foxglove,
         delayed_twist_bridge,
-        #delayed_navigation, #non legge lo yaml se lo lancio da qua aaaaaaa
+        #delayed_navigation
 
     ]
     

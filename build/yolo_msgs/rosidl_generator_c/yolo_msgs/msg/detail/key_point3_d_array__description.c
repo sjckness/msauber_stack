@@ -23,8 +23,8 @@ yolo_msgs__msg__KeyPoint3DArray__get_type_hash(
 #include <string.h>
 
 // Include directives for referenced types
-#include "yolo_msgs/msg/detail/key_point3_d__functions.h"
 #include "geometry_msgs/msg/detail/point__functions.h"
+#include "yolo_msgs/msg/detail/key_point3_d__functions.h"
 
 // Hashes for external referenced types
 #ifndef NDEBUG
