@@ -30,7 +30,7 @@ def generate_launch_description():
 
     declare_world = DeclareLaunchArgument(
         'world',
-        default_value='sonoma'
+        default_value='my_empty'
     )
 
     declare_ros_namespace = DeclareLaunchArgument(
@@ -258,6 +258,8 @@ def generate_launch_description():
     actions = [
         # Ensure we rely only on the launch-provided namespace to avoid double prefixes
         SetEnvironmentVariable('ROS_NAMESPACE', ''),
+        # Gazebo GUI is unstable on some Wayland setups; prefer X11 backend when available.
+        SetEnvironmentVariable('QT_QPA_PLATFORM', 'xcb'),
         declare_world,
         declare_ros_namespace,
         declare_use_sim_time,
