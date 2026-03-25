@@ -1,7 +1,7 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
-from launch.actions import DeclareLaunchArgument, TimerAction
+from launch.actions import DeclareLaunchArgument, TimerAction, LogInfo
 from ament_index_python.packages import get_package_share_directory
 import os
 
@@ -23,10 +23,10 @@ def generate_launch_description():
         default_value=os.path.join(
             get_package_share_directory('msauber_navigation'),
             'config',
-            'nav2_param.yaml'
-        )
+            'nav2_dubin_params.yaml'
+        ),
     )
-
+    
     declare_map = DeclareLaunchArgument(
         'map',
         default_value=os.path.join(
@@ -45,27 +45,6 @@ def generate_launch_description():
             'yaml_filename': map_file,
             'use_sim_time': use_sim_time
         }],
-    )
-
-    costmap_2d_node = TimerAction(
-        period=2.0,
-        actions=[
-            Node(
-                package='nav2_costmap_2d',
-                executable='nav2_costmap_2d',
-                name='global_costmap',
-                output='screen',
-                # Explicitly override critical frames in addition to YAML to avoid silent defaults
-                parameters=[
-                    params_file,
-                    {
-                        'use_sim_time': use_sim_time,
-                        'robot_base_frame': 'sauber_base_link',
-                        'global_frame': 'map'
-                    }
-                ],
-            )
-        ]
     )
 
     planner_server_node = TimerAction(
@@ -88,12 +67,10 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'use_sim_time': use_sim_time,
-            # default expected TF topic from the controller; override on launch if different
             'input_tf_topic': '/msauber/ackermann_steering_controller/tf_odometry',
         }],
     )
 
-    # Static transform map -> odom so Nav2 has a global frame (replace with localization when available)
     map_to_odom_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -124,14 +101,28 @@ def generate_launch_description():
         ]
     )
 
+    mpc_node = Node(
+        package='msauber_navigation',
+        executable='mpc_node',
+        name='mpc_node',
+        output='screen',
+        parameters=[{
+            'use_sim_time': use_sim_time,
+            'odom_topic': '/msauber/ackermann_steering_controller/odom',
+            'path_topic': '/path',
+            'cmd_vel_topic': '/msauber/ackermann_steering_controller/reference',
+        }],
+    )
+
     return LaunchDescription([    
         declare_use_sim_time,
         declare_param_file,
         declare_map,
+        LogInfo(msg=['[msauber_navigation] nav.launch params_file:=', params_file]),
         odom_bridge_node,
         map_to_odom_tf,
         map_server_node,
-        #costmap_2d_node,
         planner_server_node,
         lifeclycle_manager_node,
+        mpc_node,
     ])
