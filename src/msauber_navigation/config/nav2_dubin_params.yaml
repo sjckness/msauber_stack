@@ -1,0 +1,51 @@
+---
+
+planner_server:
+  ros__parameters:
+    planner_plugins: [ "GridBased" ]
+
+    GridBased:
+      plugin: "nav2_smac_planner::SmacPlannerHybrid"
+      tolerance: 0.25
+      allow_unknown: true
+      max_iterations: 500000        # generous but finite cap
+      max_planning_time: 3.0        # faster failover if unreachable
+      motion_model_for_search: "DUBIN"
+      angle_quantization_bins: 64    # finer than default for smoother headings
+      minimum_turning_radius: 0.21   # wheelbase 0.325 m, delta_max 1.0 rad -> ~0.21 m
+      reverse_penalty: 2.0
+      change_penalty: 0.0
+      non_straight_penalty: 1.2
+      cost_penalty: 2.0
+      lookup_table_size: 20.0
+      cache_obstacle_heuristic: false
+      goal_heading_mode: "DEFAULT"
+      smooth_path: true
+
+      smoother:
+        max_iterations: 400
+        w_smooth: 0.3
+        w_data: 0.2
+        tolerance: 1e-6
+        do_refinement: true
+        refinement_num: 1
+
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      update_frequency: 1.0
+      publish_frequency: 1.0
+      global_frame: map
+      robot_base_frame: sauber_base_link
+      robot_radius: 0.22
+      resolution: 0.05
+      track_unknown_space: true
+      plugins: [ "static_layer", "inflation_layer" ]
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: True
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.7
+      always_send_full_costmap: True
