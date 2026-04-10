@@ -15,8 +15,7 @@ def generate_launch_description():
     pkg_name = 'msauber_description'
     pkg_share = get_package_share_directory(pkg_name)
     control_pkg_share = get_package_share_directory('msauber_control')
-    #controllers_file = os.path.join(control_pkg_share, 'config', 'ackerman_config.yaml')
-    controllers_file = '/home/andreas/dev_ws/msauber_stack/src/msauber_control/config/ackerman_config.yaml'
+    controllers_file = os.path.join(control_pkg_share, 'config', 'ackerman_config.yaml')
 
     use_sim_time = LaunchConfiguration('use_sim_time')
     use_sim = LaunchConfiguration('use_sim')

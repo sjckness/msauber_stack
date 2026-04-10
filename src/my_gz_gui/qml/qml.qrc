@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/my_gz_gui">
+    <file>my_gz_gui.qml</file>
+  </qresource>
+</RCC>

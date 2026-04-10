@@ -1,245 +1,328 @@
 # msauber stack
-![Descrizione immagine](assets/msauber_on_track.png)
 
-![Ubuntu](https://img.shields.io/badge/Ubuntu-24.04-E95420?) 
+![MSAUBER on track](assets/msauber_on_track.png)
+
+![Ubuntu](https://img.shields.io/badge/Ubuntu-24.04-E95420?)
 ![ROS](https://img.shields.io/badge/ROS-2_Jazzy-22314E?logo=ros)
 ![Gazebo](https://img.shields.io/badge/Gazebo-Harmonic_8.10-6C3AB2?logo=gazebo)
 
-# Table of content
-[Package-overview](#package-overview)
+MSAUBER is a ROS 2 Jazzy workspace for simulation, control, navigation, and perception of a small Formula Student style vehicle.
 
-[Installation](#installation)
+# Table of contents
 
-[Build](#build)
+[Packages](#packages)
+
+[Docker workflow](#docker-workflow)
 
 [Launch](#launch)
 
-[Controller](#controller)
+[Development notes](#development-notes)
 
-[Settings](#hands-on)
+[Perception](#perception)
 
-[Usefull commands](#usefull-commands)
+[Useful commands](#useful-commands)
 
 [Foxglove](#foxglove)
 
 ---
 
-# Package Overview
+# Packages
 
 ## msauber_description
 
-This package contains the robot model and all related resources.
-
-Contents:
-- URDF / Xacro robot model
+Contains the robot model and related assets:
+- URDF / Xacro
 - meshes
-- sensor configuration
-
-Purpose:
-- Defines the physical structure of the robot
-- Used by simulation and visualization tools
-
----
-
-## msauber_bringup
-
-Responsible for launching and initializing the robot system.
-
-Contents:
-- main launch file
-- configuration files
-- system initialization
-
-Purpose:
-- Starts the complete robot stack
-- Launches the required nodes and parameters
-
----
+- RViz configuration
 
 ## msauber_control
 
-Handles the robot control layer.
-
-Contents:
-- ROS 2 controllers
-- velocity and position command interfaces (`/cmd_vel`)
-- hardware interfaces
-
-Purpose:
-- Converts high-level commands into actuator commands
-- Interfaces with the robot hardware
-
----
+Contains the control layer:
+- ros2_control configuration
+- Ackermann controller setup
+- teleop bridge
 
 ## msauber_sim
 
-Provides simulation support.
-
-Contents:
-- gz_sim launch
+Contains simulation resources:
+- Gazebo launch files
 - world files
-- simulation plugins
+- custom models
+- GUI plugin integration
 
-Purpose:
-- Allows testing the robot in simulation
-- Development without physical hardware
+## msauber_navigation
 
----
+Contains the navigation stack:
+- TF / odom bridge
+- planner integration
+- MPC follower
 
 ## msauber_perception
 
-Contents:
-- YOLO algorithms
-- cone detection
-- 
+Contains the perception stack:
+- YOLO integration
+- cone detection node
+- model files
 
-Purpose:
-- Enables the robot to see the world
+## msauber_bringup
+
+Top-level launch package used to start the complete stack.
 
 ---
 
-# Installation
-[ROS2 Jazzy installation guide](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html)
+# Docker workflow
 
-[Gazebo Harmonic 8.9 installation guide](https://gazebosim.org/docs/harmonic/install_ubuntu/)
+The recommended way to run this project is with Docker.
 
-### Package installation
-For our case you can clone the main branch of this repository in `~/dev_ws/src/` using:
+## Prerequisites
 
- ```bash
-git clone https://github.com/sjckness/msauber_stack
-```
+Host requirements:
+- Docker
+- Docker Compose
+- X11 available on the host for Gazebo GUI
 
-Msauber_stack includes different packages, and from now on Msauber_stack will be the workspace, so the folders `build/` `log/` and `install/` will be created here.
-
-Inside /msauber_stack run the full project installation:
-
- ```bash
-./scripts/install.sh
-```
-This installs all dependencies (ROS2, Python, etc.) and builds the workspace.
-
-## Environment
-
-Inside /msauber_stack activate the working environment:
-
- ```bash
-source scripts/env.sh
-```
-This loads ROS2, the workspace, and the Python environment.
-
-⚠️ Use `source`, not `./env.sh`.
-
-## Typical usage
+If you are on Linux and Gazebo cannot open a window, allow local Docker containers to access your X server:
 
 ```bash
-./scripts/install.sh
-source scripts/env.sh
+xhost +local:docker
 ```
 
-# Build
-Inside `/msauber_stack` use the following command to build the packages (this step is mandatory every time you open a new terminal): 
+## Build the image
+
+From the repository root:
+
 ```bash
-colcon build --simlink-install 
+docker compose build --no-cache msauber
 ```
-Then you have to source the workspace, and now ros knows where your files are. Use:
+
+The image installs:
+- ROS 2 Jazzy
+- Gazebo / ros_gz integration
+- Nav2 packages used by the stack
+- Poetry dependencies from `pyproject.toml`
+- the workspace itself with `colcon build`
+
+## Start the container
+
 ```bash
-source install/setup.bash
+docker compose up msauber
 ```
+
+Or, in detached mode:
+
+```bash
+docker compose up -d msauber
+```
+
+To open a shell inside the running container:
+
+```bash
+docker exec -it msauber bash
+```
+
+The container shell automatically sources:
+- `/opt/ros/jazzy/setup.bash`
+- `/ros2_ws/.venv/bin/activate`
+- `/ros2_ws/install/setup.bash`
+
+## Workspace layout inside the container
+
+Inside the container the workspace is mounted at:
+
+```bash
+/ros2_ws
+```
+
+The following volumes are persisted:
+- `build/`
+- `install/`
+- `log/`
+
+The `src/` folder is bind-mounted from the host, so source edits on your machine are immediately visible inside the container.
+
+## Rebuild after source changes
+
+If you change ROS packages in `src/`, rebuild inside the container:
+
+```bash
+colcon build --symlink-install
+```
+
+If you change:
+- `Dockerfile`
+- `docker-compose.yml`
+- `pyproject.toml`
+- `poetry.lock`
+
+you should rebuild the image:
+
+```bash
+docker compose build --no-cache msauber
+```
+
+---
+
 # Launch
-If you want to launch everything you can run:
-```bash 
+
+To start the full simulation stack inside the container:
+
+```bash
 ros2 launch msauber_bringup sim_bringup.launch.py
 ```
 
-### specific launches
-See the robot on rviz2:
-```bash 
+## Common launch examples
+
+Robot description in RViz:
+
+```bash
 ros2 launch msauber_description description.launch.py use_rviz:=true
 ```
-Gazebo+robot w/o control and perception with custom world:
-```bash 
+
+Gazebo with a custom world:
+
+```bash
 ros2 launch msauber_sim sim.launch.py world:=cone_empty
 ```
-Controllers launch and activation(not so usefull):
-```bash 
-ros2 launch msauber_control control.launch.py
-```
-Perception, YOLO and cone detection
-```bash 
+
+Perception stack:
+
+```bash
 ros2 launch msauber_perception perception.launch.py
 ```
 
-# Controller
-### Ackerman controller
-The ackerman controller is a ROS2 type of controller that allowes you to choose velocity and stearing rate. In this version is used with the node `teleop_twist_keyboard` from the namesake package. It take imput from the keyboard and the car moves.
+Navigation-enabled bringup:
 
-To use it just run:
-```bash 
+```bash
+ros2 launch msauber_bringup sim_bringup.launch.py use_nav2:=true
+```
+
+Choose a world:
+
+```bash
+ros2 launch msauber_bringup sim_bringup.launch.py world:=pista
+```
+
+Available worlds:
+- `my_empty`
+- `cone_empty`
+- `pista`
+- `sonoma`
+
+Disable sensors:
+
+```bash
+ros2 launch msauber_bringup sim_bringup.launch.py enable_sensors:=false
+```
+
+Enable Foxglove bridge:
+
+```bash
+ros2 launch msauber_bringup sim_bringup.launch.py use_foxglove:=true
+```
+
+---
+
+# Development notes
+
+## Build manually inside the container
+
+```bash
+colcon build --symlink-install
+```
+
+## Clean persistent build artifacts
+
+If you want to reset the workspace build state managed by Docker volumes:
+
+```bash
+docker compose down -v
+```
+
+Then rebuild and start again:
+
+```bash
+docker compose build --no-cache msauber
+docker compose up msauber
+```
+
+## Controller notes
+
+The stack uses an Ackermann controller. For manual control, you can publish teleop commands from another shell in the container.
+
+Example:
+
+```bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
-It works better with US keyboards, istead of WASD you should use IJML.
 
-# Hands on
-## Worlds
-In order to try different worlds is now possible to select it when launching the simulation by setting the `world` parameter:
+On many keyboards the bindings are easier to use with the terminal focused directly on the teleop node.
+
+---
+
+# Perception
+
+The perception stack uses a YOLO model trained for cone detection.
+
+A convenient world for testing perception is:
+
 ```bash
-ros2 launch msauber_stack sim_bringup.launch.py world:=world_name
+ros2 launch msauber_bringup sim_bringup.launch.py world:=cone_empty use_yolo:=true
 ```
-Worlds available in the stack:
-- cone_empty
-- sonoma
-- my_empty
 
-## Cameras
-Cameras are implemented for perception. One classic front camera and one depth camera. 
-To visualize the cameras outputs we need to use [Foxglove](#foxglove).
+Camera topics:
+- `/front_camera/image`
+- `/front_camera/camera_info`
+- `/front_depth/image`
+- `/front_depth/camera_info`
 
-You should add an IMAGE pannel and set, for the classic camera:
-- topic : `/front_camera/image`
-- calibration : `/front_camera/camera_info`
+The cone detection pipeline publishes markers that can be visualized in RViz.
 
-And for the depth camera:
-- topic : `/front_depth/image`
-- calibration : `/front_depth/camera_info`
+![Gazebo cones](assets/gz_cones.png)
 
-Is possible to disable the sensors by passign the following argument to false while launching:
-```bash
-ros2 launch msauber msauber.launch.py enable_sensors:=false
-```
-## Perception pkg
-By launching the world `cone_empty` is possible to test the perception models, in gazebo you'll see:
+![Foxglove cones](assets/foxglove_cones.png)
 
-![Descrizione immagine](assets/gz_cones.png)
+![RViz cones](assets/rviz_cones.png)
 
-In foxglove you will see this from the cameras:
+---
 
-![Descrizione immagine](assets/foxglove_cones.png)
+# Useful commands
 
-The stack is using a [YOLO model](https://docs.ultralytics.com/models/yolov8/)  trained on a set of cones from [FSOCO dataset](https://universe.roboflow.com/cone-detection-bsgwo/fsoco-67vav). The front_camera image is passed to it and cones are identified, then the position of the cone is completed with the info from the depth camera and from there a 3D position is computed and the a marker is sent on the topic: `/perception/cones_markers` and that can be viasulized on RVIZ:
+Open RViz:
 
-![Descrizione immagine](assets/rviz_cones.png)
-
-In the futur a explaination of the trainign process will be added ;)
-
-# Usefull commands
-Rviz2:
 ```bash
 rviz2
 ```
 
-to kill gazebo:
+Kill Gazebo if needed:
+
 ```bash
 pkill -9 -f 'gz-sim|gz sim|gz'
 ```
 
-## Foxglove
-Foxglove is a visualization and debugging tool for robotics that allows you to inspect, analyze, and replay ROS data (topics, messages, and logs) in real time or from recorded bag files.
+Stop the running container:
 
-In a new terminal:
 ```bash
-foxglove-studio
+docker compose down
 ```
-Foxglove session info:
- - address: `ws://localhost`
- - port: `8765` (defined in launch file)
+
+Show container logs:
+
+```bash
+docker compose logs -f msauber
+```
+
+---
+
+# Foxglove
+
+Foxglove can connect to the bridge started by the bringup launch file.
+
+Enable it with:
+
+```bash
+ros2 launch msauber_bringup sim_bringup.launch.py use_foxglove:=true
+```
+
+Connection info:
+- address: `ws://localhost`
+- port: `8765`

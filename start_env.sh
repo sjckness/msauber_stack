@@ -2,7 +2,7 @@
 
 SESSION="ros2_mpc_2"
 WORKDIR="$HOME/dev_ws/msauber_stack"
-BASE_CMD="cd ${WORKDIR} && set_env && clear"
+BASE_CMD="cd ${WORKDIR} && source scripts/msauber_env_set.sh && clear"
 
 # If the session already exists, kill it to start fresh (avoids re-splitting on reuse).
 if tmux has-session -t "${SESSION}" 2>/dev/null; then

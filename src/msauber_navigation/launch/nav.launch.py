@@ -114,6 +114,21 @@ def generate_launch_description():
         }],
     )
 
+    goal_pose_to_path_node = Node(
+        package='msauber_navigation',
+        executable='goal_pose_to_path',
+        name='goal_pose_to_path',
+        output='screen',
+        parameters=[{
+            'goal_topic': '/goal_pose',
+            'path_topic': '/path',
+            'odom_topic': '/msauber/ackermann_steering_controller/odom',
+            'planner_action': 'compute_path_to_pose',
+            'planner_id': 'GridBased',
+            'global_frame': 'map',
+        }],
+    )
+
     return LaunchDescription([    
         declare_use_sim_time,
         declare_param_file,
@@ -124,5 +139,6 @@ def generate_launch_description():
         map_server_node,
         planner_server_node,
         lifeclycle_manager_node,
+        goal_pose_to_path_node,
         mpc_node,
     ])

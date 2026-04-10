@@ -35,11 +35,7 @@ def generate_launch_description():
 
     declare_world = DeclareLaunchArgument(
         'world',
-<<<<<<< HEAD
-        default_value='my_empty'
-=======
         default_value='pista'
->>>>>>> 2fd5c9bac7267537935ce43e83f1bde1f42373dd
     )
 
     declare_ros_namespace = DeclareLaunchArgument(
@@ -102,7 +98,7 @@ def generate_launch_description():
 
     declare_params_file = DeclareLaunchArgument(
         'params_file',
-        default_value=os.path.join(navigation_pkg_share, 'config', 'nav2_param_dubin.yaml'),
+        default_value=os.path.join(navigation_pkg_share, 'config', 'nav2_dubin_params.yaml'),
         description='Params file for nav'
     )
     declare_nav_map = DeclareLaunchArgument(
@@ -171,12 +167,7 @@ def generate_launch_description():
         'msauber.xacro'
     ])
 
-    controllers_files = PathJoinSubstitution([
-        FindPackageShare('msauber_control'),
-        'config',
-        'ackerman_config.yaml'
-    ])
-    controllers_file = '/home/andreas/dev_ws/msauber_stack/src/msauber_control/config/ackerman_config.yaml'
+    controllers_file = os.path.join(control_pkg_share, 'config', 'ackerman_config.yaml')
 
     robot_description_str = Command([
         'xacro ',
@@ -252,7 +243,6 @@ def generate_launch_description():
         package='msauber_control',
         executable='teleop_bridge',
         name='teleop_bridge',
-        namespace=ros_namespace,
         output='screen',
         parameters=[{'use_sim_time': use_sim_time}]
     )
@@ -300,6 +290,7 @@ def generate_launch_description():
     delayed_navigation = TimerAction(
         period=nav_start_delay,
         actions=[navigation_launch],
+        condition=IfCondition(use_nav2),
     )
 
     actions = [
@@ -325,7 +316,7 @@ def generate_launch_description():
         delayed_spawn_and_control,
         delayed_foxglove,
         delayed_twist_bridge,
-        #delayed_navigation
+        delayed_navigation
 
     ]
     

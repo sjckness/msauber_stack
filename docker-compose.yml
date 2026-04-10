@@ -1,0 +1,27 @@
+services:
+  msauber:
+    build: .
+    image: msauber_ros2_jazzy
+    container_name: msauber
+
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+
+    volumes:
+      # bind mount: src dall'host, build/install persistenti
+      - ./src:/ros2_ws/src
+      - ros2_build:/ros2_ws/build
+      - ros2_install:/ros2_ws/install
+      - ros2_log:/ros2_ws/log
+      # X11 per GUI
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+    network_mode: host
+    stdin_open: true
+    tty: true
+
+volumes:
+  ros2_build:
+  ros2_install:
+  ros2_log:

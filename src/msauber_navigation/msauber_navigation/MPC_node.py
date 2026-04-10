@@ -2,7 +2,6 @@ import math
 from typing import Optional
 
 import numpy as np
-from tf_transformations import euler_from_quaternion
 
 import rclpy
 from rclpy.node import Node
@@ -12,6 +11,12 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry, Path
 
 from msauber_navigation.MPC import MPCController
+
+
+def yaw_from_quaternion(x: float, y: float, z: float, w: float) -> float:
+    siny_cosp = 2.0 * (w * z + x * y)
+    cosy_cosp = 1.0 - 2.0 * (y * y + z * z)
+    return math.atan2(siny_cosp, cosy_cosp)
 
 
 class MPCNode(Node):
@@ -95,7 +100,7 @@ class MPCNode(Node):
     def _odom_callback(self, msg: Odometry):
         p = msg.pose.pose.position
         q = msg.pose.pose.orientation
-        _, _, yaw = euler_from_quaternion([q.x, q.y, q.z, q.w])
+        yaw = yaw_from_quaternion(q.x, q.y, q.z, q.w)
         v = msg.twist.twist.linear.x
         self.state = np.array([p.x, p.y, yaw, v], dtype=float)
 
@@ -112,7 +117,7 @@ class MPCNode(Node):
         for pose_stamped in msg.poses:
             p = pose_stamped.pose.position
             q = pose_stamped.pose.orientation
-            _, _, yaw = euler_from_quaternion([q.x, q.y, q.z, q.w])
+            yaw = yaw_from_quaternion(q.x, q.y, q.z, q.w)
             path.append([p.x, p.y, yaw])
         return np.array(path, dtype=float)
 

@@ -34,6 +34,7 @@ setup(
         'console_scripts': [
             'odom_tf_bridge = msauber_navigation.odom_tf_bridge:main',
             'mpc_node = msauber_navigation.MPC_node:main',
+            'goal_pose_to_path = msauber_navigation.goal_pose_to_path:main',
         ],
     },
 )

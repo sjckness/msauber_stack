@@ -3,5 +3,6 @@ build/
 install/ 
 log/
 .venv/
+scripts/
 
 /scripts/update_deps_and_push.sh

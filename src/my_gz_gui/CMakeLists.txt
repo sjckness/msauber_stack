@@ -1,0 +1,72 @@
+cmake_minimum_required(VERSION 3.10)
+project(my_gz_gui)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+find_package(ament_cmake REQUIRED)
+find_package(ament_index_cpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(gz-gui8 REQUIRED)
+find_package(gz-transport13 REQUIRED)
+find_package(gz-msgs10 REQUIRED)
+find_package(gz-sim8 REQUIRED)
+find_package(rclcpp REQUIRED)
+
+qt5_add_resources(QRC_SOURCES qml/qml.qrc)
+qt5_wrap_cpp(MOC_SOURCES include/my_gz_gui/MyGuiPlugin.hh)
+
+add_library(${PROJECT_NAME} SHARED
+  src/MyGuiPlugin.cc
+  ${MOC_SOURCES}
+  ${QRC_SOURCES}
+)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+
+target_link_libraries(${PROJECT_NAME}
+  ament_index_cpp::ament_index_cpp
+  gz-gui8::gz-gui8
+  gz-transport13::gz-transport13
+  gz-msgs10::gz-msgs10
+  gz-sim8::gz-sim8
+)
+
+ament_target_dependencies(${PROJECT_NAME}
+  geometry_msgs
+  rclcpp
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
+
+ament_environment_hooks(
+  "${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/my_gz_gui.dsv"
+  "${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/my_gz_gui.sh"
+)
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  set(ament_cmake_copyright_FOUND TRUE)
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_package()
