@@ -58,6 +58,12 @@ class ConePerceptionNode(Node):
             10
         )
 
+        self.annotated_pub = self.create_publisher(
+            Image,
+            "/perception/annotated_image",
+            10
+        )
+
         self.create_subscription(
             Image,
             "/front_depth/image",
@@ -137,7 +143,14 @@ class ConePerceptionNode(Node):
 
         results = self.model(frame, verbose=False)
 
-        #self.get_logger().info(f"detections: {len(results[0].boxes)}")
+        # Publish annotated image (bounding boxes drawn by YOLO) for the viewer
+        try:
+            annotated = results[0].plot()   # BGR numpy array with boxes/labels
+            ann_msg = self.bridge.cv2_to_imgmsg(annotated, "bgr8")
+            ann_msg.header = msg.header
+            self.annotated_pub.publish(ann_msg)
+        except Exception as exc:
+            self.get_logger().warn(f"annotated image publish failed: {exc}")
 
         markers = MarkerArray()
 

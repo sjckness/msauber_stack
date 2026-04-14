@@ -17,6 +17,7 @@ def generate_launch_description():
     sim_pkg_share = get_package_share_directory('msauber_sim')
     bringup_pkg_share = get_package_share_directory('msauber_bringup')
     navigation_pkg_share = get_package_share_directory('msauber_navigation')
+    rviz_config = os.path.join(bringup_pkg_share, 'rviz', 'sim_bringup.rviz')
 
     world = LaunchConfiguration('world')
     ros_namespace = LaunchConfiguration('ros_namespace')
@@ -32,6 +33,8 @@ def generate_launch_description():
     params_file = LaunchConfiguration('params_file')
     nav_map = LaunchConfiguration('nav_map')
     use_nav2 = LaunchConfiguration('use_nav2')
+    use_rviz = LaunchConfiguration('use_rviz')
+    use_viewer = LaunchConfiguration('use_viewer')
 
     declare_world = DeclareLaunchArgument(
         'world',
@@ -55,7 +58,7 @@ def generate_launch_description():
 
     declare_enable_sensors = DeclareLaunchArgument(
         'enable_sensors',
-        default_value='false'
+        default_value='true'
     )
 
     declare_use_foxglove = DeclareLaunchArgument(
@@ -72,6 +75,18 @@ def generate_launch_description():
         'use_yolo',
         default_value='false',
         description='Launch YOLO perception stack'
+    )
+
+    declare_use_rviz = DeclareLaunchArgument(
+        'use_rviz',
+        default_value='false',
+        description='Launch RViz with sim bringup config'
+    )
+
+    declare_use_viewer = DeclareLaunchArgument(
+        'use_viewer',
+        default_value='false',
+        description='Launch scrollable camera/YOLO viewer window'
     )
 
     declare_gz_start_delay = DeclareLaunchArgument(
@@ -253,6 +268,24 @@ def generate_launch_description():
         parameters=[{'use_sim_time': use_sim_time}]
     )
 
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', rviz_config],
+        parameters=[{'use_sim_time': use_sim_time}],
+        condition=IfCondition(use_rviz),
+    )
+
+    viewer_node = Node(
+        package='msauber_perception',
+        executable='camera_viewer_node',
+        name='camera_viewer_node',
+        output='screen',
+        condition=IfCondition(use_viewer),
+    )
+
     delayed_robot_stack = TimerAction(
         period=gz_start_delay,
         actions=[
@@ -288,6 +321,7 @@ def generate_launch_description():
         ),
         launch_arguments={
             'use_sim_time': use_sim_time,
+            'namespace': ros_namespace,
             'params_file' : params_file,
             'map': nav_map,
         }.items()
@@ -308,6 +342,8 @@ def generate_launch_description():
         declare_use_foxglove,
         declare_use_twist_bridge,
         declare_use_yolo,
+        declare_use_rviz,
+        declare_use_viewer,
         declare_gz_start_delay,
         declare_spawn_delay,
         declare_spawner_delay,
@@ -315,12 +351,18 @@ def generate_launch_description():
         declare_params_file,
         declare_nav_map,
         sim_launch,
+        rviz_node,
+        viewer_node,
         delayed_robot_stack,
         delayed_spawn_and_control,
         delayed_foxglove,
         delayed_twist_bridge,
+<<<<<<< Updated upstream
         #delayed_navigation
 
+=======
+        delayed_navigation,
+>>>>>>> Stashed changes
     ]
     
     return LaunchDescription(actions)

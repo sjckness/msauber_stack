@@ -1,8 +1,10 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch_ros.descriptions import ParameterFile
 from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument, TimerAction, LogInfo
 from ament_index_python.packages import get_package_share_directory
+from nav2_common.launch import RewrittenYaml
 import os
 
 def generate_launch_description():
@@ -10,11 +12,26 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
     params_file = LaunchConfiguration('params_file')
     map_file = LaunchConfiguration('map')
+    namespace = LaunchConfiguration('namespace')
+    configured_params = ParameterFile(
+        RewrittenYaml(
+            source_file=params_file,
+            root_key=namespace,
+            param_rewrites={},
+            convert_types=True,
+        ),
+        allow_substs=True,
+    )
     
 
     declare_use_sim_time = DeclareLaunchArgument(
         'use_sim_time',
         default_value='true'
+    )
+
+    declare_namespace = DeclareLaunchArgument(
+        'namespace',
+        default_value=''
     )
 
     declare_param_file = DeclareLaunchArgument(
@@ -54,7 +71,7 @@ def generate_launch_description():
                 executable='planner_server',
                 name='planner_server',
                 output='screen',
-                parameters=[params_file, {'use_sim_time': use_sim_time}],
+                parameters=[params_file, configured_params, {'use_sim_time': use_sim_time}],
             )
         ]
     )
@@ -66,6 +83,7 @@ def generate_launch_description():
         output='screen',
         parameters=[
             params_file,
+            configured_params,
             {'use_sim_time': use_sim_time}
         ]
     )
@@ -75,7 +93,7 @@ def generate_launch_description():
         executable='behavior_server',
         name='behavior_server',
         output='screen',
-        parameters=[params_file, {'use_sim_time': use_sim_time}],
+        parameters=[params_file, configured_params, {'use_sim_time': use_sim_time}],
     )
 
     bt_navigator_node = Node(
@@ -83,7 +101,7 @@ def generate_launch_description():
         executable='bt_navigator',
         name='bt_navigator',
         output='screen',
-        parameters=[params_file, {'use_sim_time': use_sim_time}],
+        parameters=[params_file, configured_params, {'use_sim_time': use_sim_time}],
     )
 
     odom_bridge_node = Node(
@@ -132,6 +150,7 @@ def generate_launch_description():
 
     return LaunchDescription([    
         declare_use_sim_time,
+        declare_namespace,
         declare_param_file,
         declare_map,
         LogInfo(msg=['[msauber_navigation] full_nav.launch params_file:=', params_file]),

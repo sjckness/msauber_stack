@@ -16,6 +16,8 @@
   <depend>rclpy</depend>
   <depend>xacro</depend>
   <depend>controller_manager</depend>
+  <depend>joint_state_broadcaster</depend>
+  <depend>ackermann_steering_controller</depend>
   <depend>msauber_description</depend>
 
   <test_depend>ament_copyright</test_depend>

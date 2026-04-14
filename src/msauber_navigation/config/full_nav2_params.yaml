@@ -163,7 +163,7 @@ bt_navigator:
     use_sim_time: True
     global_frame: map
     robot_base_frame: sauber_base_link
-    odom_topic: /msauber/ackermann_steering_controller/odom
+    odom_topic: /msauber/ackermann_steering_controller/odometry
     default_nav_to_pose_bt_xml: /opt/ros/jazzy/share/nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml
     default_nav_through_poses_bt_xml: /opt/ros/jazzy/share/nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml
     navigators: ["navigate_to_pose", "navigate_through_poses"]

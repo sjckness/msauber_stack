@@ -1,0 +1,1 @@
+pkill -TERM -f 'ros2 launch msauber_bringup sim_bringup.launch.py|gz sim|ros_gz_bridge/parameter_bridge'

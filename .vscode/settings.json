@@ -1,0 +1,32 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/ros2_ws/build/msauber_bringup",
+        "/ros2_ws/install/msauber_bringup/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_sim",
+        "/ros2_ws/install/msauber_sim/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_perception",
+        "/ros2_ws/install/msauber_perception/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_navigation",
+        "/ros2_ws/install/msauber_navigation/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_control",
+        "/ros2_ws/install/msauber_control/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_description",
+        "/ros2_ws/install/msauber_description/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/ros2_ws/build/msauber_bringup",
+        "/ros2_ws/install/msauber_bringup/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_sim",
+        "/ros2_ws/install/msauber_sim/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_perception",
+        "/ros2_ws/install/msauber_perception/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_navigation",
+        "/ros2_ws/install/msauber_navigation/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_control",
+        "/ros2_ws/install/msauber_control/lib/python3.12/site-packages",
+        "/ros2_ws/build/msauber_description",
+        "/ros2_ws/install/msauber_description/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ]
+}

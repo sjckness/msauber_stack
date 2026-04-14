@@ -13,7 +13,11 @@ from launch_ros.actions import PushRosNamespace
 def generate_launch_description():
     sim_pkg_share = get_package_share_directory('msauber_sim')
     description_pkg_share = get_package_share_directory('msauber_description')
+<<<<<<< Updated upstream
 
+=======
+    ros_gz_sim_pkg_share = get_package_share_directory('ros_gz_sim')
+>>>>>>> Stashed changes
     world = LaunchConfiguration('world')
     namespace = LaunchConfiguration('namespace')
     declare_world = DeclareLaunchArgument(

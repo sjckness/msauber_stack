@@ -1,8 +1,10 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch_ros.descriptions import ParameterFile
 from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument, TimerAction, LogInfo
 from ament_index_python.packages import get_package_share_directory
+from nav2_common.launch import RewrittenYaml
 import os
 
 def generate_launch_description():
@@ -10,12 +12,27 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
     params_file = LaunchConfiguration('params_file')
     map_file = LaunchConfiguration('map')
+    namespace = LaunchConfiguration('namespace')
+    configured_params = ParameterFile(
+        RewrittenYaml(
+            source_file=params_file,
+            root_key=namespace,
+            param_rewrites={},
+            convert_types=True,
+        ),
+        allow_substs=True,
+    )
     
     
 
     declare_use_sim_time = DeclareLaunchArgument(
         'use_sim_time',
         default_value='true'
+    )
+
+    declare_namespace = DeclareLaunchArgument(
+        'namespace',
+        default_value=''
     )
 
     declare_param_file = DeclareLaunchArgument(
@@ -55,7 +72,7 @@ def generate_launch_description():
                 executable='planner_server',
                 name='planner_server',
                 output='screen',
-                parameters=[params_file, {'use_sim_time': use_sim_time}],
+                parameters=[params_file, configured_params, {'use_sim_time': use_sim_time}],
             )
         ]
     )
@@ -108,14 +125,33 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'use_sim_time': use_sim_time,
-            'odom_topic': '/msauber/ackermann_steering_controller/odom',
+            'odom_topic': '/msauber/ackermann_steering_controller/odometry',
             'path_topic': '/path',
             'cmd_vel_topic': '/msauber/ackermann_steering_controller/reference',
         }],
     )
 
+<<<<<<< Updated upstream
+=======
+    goal_pose_to_path_node = Node(
+        package='msauber_navigation',
+        executable='goal_pose_to_path',
+        name='goal_pose_to_path',
+        output='screen',
+        parameters=[{
+            'goal_topic': '/goal_pose',
+            'path_topic': '/path',
+            'odom_topic': '/msauber/ackermann_steering_controller/odometry',
+            'planner_action': 'compute_path_to_pose',
+            'planner_id': 'GridBased',
+            'global_frame': 'map',
+        }],
+    )
+
+>>>>>>> Stashed changes
     return LaunchDescription([    
         declare_use_sim_time,
+        declare_namespace,
         declare_param_file,
         declare_map,
         LogInfo(msg=['[msauber_navigation] nav.launch params_file:=', params_file]),

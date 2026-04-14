@@ -28,7 +28,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'cone_detection_node = msauber_perception.cone_detection_node:main'
+            'cone_detection_node = msauber_perception.cone_detection_node:main',
+            'camera_viewer_node = msauber_perception.camera_viewer_node:main',
         ],
     },
 )

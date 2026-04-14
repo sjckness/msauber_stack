@@ -1,0 +1,120 @@
+{
+  // ── MSAuber ROS 2 Jazzy devcontainer ──────────────────────────────────
+  // Reuses the Docker image built via docker-compose to avoid slow
+  // rebuilds when starting the devcontainer.
+  // Named volumes keep colcon build/install/log artifacts across rebuilds.
+  // X11 socket + host networking give Gazebo and RViz full display access.
+  "name": "MSAuber ROS 2 Jazzy",
+
+  // ── Image ────────────────────────────────────────────────────────────
+  // Use the image already built by `docker compose build msauber`
+  // to avoid a full rebuild every time the devcontainer starts.
+  "image": "msauber_ros2_jazzy",
+
+  // ── Workspace ────────────────────────────────────────────────────────
+  // The whole project root is bind-mounted to /ros2_ws inside the container.
+  // Named volumes overlay build/, install/, log/ so artifacts persist.
+  "workspaceFolder": "/ros2_ws",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/ros2_ws,type=bind,consistency=cached",
+
+  "mounts": [
+    // Share the same volumes defined in docker-compose.yml so build/install
+    // artifacts persist across both workflows.
+    "source=ros2_build,target=/ros2_ws/build,type=volume",
+    "source=ros2_install,target=/ros2_ws/install,type=volume",
+    "source=ros2_log,target=/ros2_ws/log,type=volume",
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind"
+  ],
+
+  // ── Runtime flags ────────────────────────────────────────────────────
+  // Host networking: required for ROS discovery, Gazebo rendering, X11.
+  // Privileged: needed by Gazebo physics and GPU access inside container.
+  "runArgs": [
+    "--network=host",
+    "--privileged"
+  ],
+
+  // ── Environment ──────────────────────────────────────────────────────
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "QT_X11_NO_MITSHM": "1",
+    "ROS_DISTRO": "jazzy",
+    "PYTHONUNBUFFERED": "1",
+    "POETRY_VIRTUALENVS_IN_PROJECT": "true"
+  },
+
+  // ── Lifecycle hooks ──────────────────────────────────────────────────
+  // On the host: allow the container user (root) to connect to the X server.
+  "initializeCommand": "xhost +local:docker 2>/dev/null || true",
+
+  // Inside the container: rebuild the colcon workspace only when the named
+  // volume is empty (first run or after 'docker volume rm').
+  "postCreateCommand": "bash -c 'if [ ! -f /ros2_ws/install/setup.bash ]; then echo \"==> colcon build (first run)\"; source /opt/ros/jazzy/setup.bash && source /ros2_ws/.venv/bin/activate 2>/dev/null || true && cd /ros2_ws && colcon build --symlink-install; else echo \"==> workspace already built, skipping colcon build\"; fi'",
+
+  // ── User ─────────────────────────────────────────────────────────────
+  "remoteUser": "root",
+
+  // ── Forwarded ports ──────────────────────────────────────────────────
+  // 8765 → Foxglove WebSocket bridge
+  "forwardPorts": [8765],
+  "portsAttributes": {
+    "8765": {
+      "label": "Foxglove WebSocket",
+      "onAutoForward": "silent"
+    }
+  },
+
+  // ── Shutdown behaviour ───────────────────────────────────────────────
+  "shutdownAction": "stopContainer",
+
+  // ── VS Code customisations ───────────────────────────────────────────
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Python
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        // C++ / CMake  (for my_gz_gui)
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        // ROS
+        "ms-iot.vscode-ros",
+        // Config / data formats
+        "tamasfe.even-better-toml",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml",
+        // Tooling
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        // AI coding agents
+        "OpenAI.chatgpt",
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        // Python – point at the Poetry venv baked into the image
+        "python.defaultInterpreterPath": "/ros2_ws/.venv/bin/python",
+        "python.terminal.activateEnvironment": false,
+
+        // ROS extension
+        "ros.distro": "jazzy",
+        "ros.rosSetupScript": "/opt/ros/jazzy/setup.bash",
+
+        // C++ IntelliSense
+        "C_Cpp.default.compileCommands": "/ros2_ws/build/compile_commands.json",
+        "C_Cpp.default.includePath": [
+          "/opt/ros/jazzy/include/**",
+          "/ros2_ws/src/**",
+          "/ros2_ws/install/*/include/**"
+        ],
+
+        // CMake
+        "cmake.buildDirectory": "/ros2_ws/build",
+
+        // Terminal – open bash with all ROS sources already active
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.shellIntegration.enabled": true
+      }
+    }
+  }
+}

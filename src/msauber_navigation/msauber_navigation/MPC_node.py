@@ -8,7 +8,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TwistStamped
 from nav_msgs.msg import Odometry, Path
 
 from msauber_navigation.MPC import MPCController
@@ -79,7 +79,7 @@ class MPCNode(Node):
 
         # Publisher
         self.cmd_pub = self.create_publisher(
-            Twist,
+            TwistStamped,
             cmd_vel_topic, 
             10)
 
@@ -136,9 +136,11 @@ class MPCNode(Node):
         v_next = v_curr + a * self.Ts
         omega = v_next / self.params["L"] * math.tan(delta)
 
-        msg = Twist()
-        msg.linear.x = float(v_next)
-        msg.angular.z = float(omega)
+        msg = TwistStamped()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = "sauber_base_link"
+        msg.twist.linear.x = float(v_next)
+        msg.twist.angular.z = float(omega)
         self.cmd_pub.publish(msg)
 
         # keep internal velocity consistent until next odom arrives
